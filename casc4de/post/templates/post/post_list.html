@@ -1,0 +1,15 @@
+<ul>
+    {% if post_list %}
+        {% for post in post_list %}
+        <li>{{post.title}} | 
+            <a href="{{url_for('post.edit', post_id = post.id)}}">edit</a> | 
+            <a href="{{url_for('post.delete', post_id = post.id)}}">delete</a> |
+            {{post.created_date}}
+        </li>
+        {% endfor %}
+    {% else %}
+        <li>There isn't post here.</li>
+    {% endif %}
+    <li><a href="{{url_for('post.add')}}">Create an article</a></li>
+</ul>
+

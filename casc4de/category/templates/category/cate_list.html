@@ -1,0 +1,15 @@
+<ul>
+    {% if cate_list %}
+        {% for cate in cate_list %}
+        <li>{{cate.name}} | 
+            <a href="{{url_for('category.edit', cate_id = cate.id)}}">edit</a> | 
+            <a href="{{url_for('category.delete', cate_id = cate.id)}}">delete</a> |
+            {{cate.created_date}}
+        </li>
+        {% endfor %}
+    {% else %}
+        <li>There isn't category here.</li>
+    {% endif %}
+    <li><a href="{{url_for('category.add')}}">Create category</a></li>
+</ul>
+

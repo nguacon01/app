@@ -1,0 +1,10 @@
+name: nguacon01
+channels:
+    - conda-forge
+dependencies:
+    - python=3.8
+    - flask
+    - numpy
+    - scipy
+    - matplotlib
+    - flask-sqlalchemy
