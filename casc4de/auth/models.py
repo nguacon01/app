@@ -11,9 +11,10 @@ class Users(UserMixin, db.Model):
     last_name = db.Column(db.String(20), nullable = True, unique = False)
     address = db.Column(db.String(100), nullable = True, unique = False)
     phone_nb = db.Column(db.String(20), nullable = True, unique = False)
+    image = db.Column(db.String(100), nullable = True, unique = False)
 
 
-    def __init__(self, username, password, email, first_name, last_name, address, phone_nb):
+    def __init__(self, username, password, email, first_name, last_name, address, phone_nb, image):
         self.username = username
         self.password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
         self.email = email
@@ -21,6 +22,7 @@ class Users(UserMixin, db.Model):
         self.last_name = last_name
         self.address = address
         self.phone_nb = phone_nb
+        self.image = image
     
     def __repr__(self):
         return self.id, self.username
