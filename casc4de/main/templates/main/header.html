@@ -149,6 +149,8 @@
         <nav class="offcanvas">
             <a href="#" id="nav-close">X</a>
             <ul id="menu-main-menu" class="nav navbar-nav">
+                <li id="menu-item-13181" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13181">
+                    <a title="Our solutions" href="{{url_for('metadata.select_project')}}">Edit Config file</a></li>
                 {% if(current_user.is_authenticated) %}
                 <li id="menu-item-13181" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13181">
                     <a title="Our solutions" href="{{url_for('auth.profile')}}">Welcome {{current_user.username}}</a>

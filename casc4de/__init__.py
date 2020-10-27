@@ -26,6 +26,7 @@ def create_app():
         from .main.views import main
         from .metadata.views import metadata
         from .auth.views import auth
+        from .auth_token.views import auth_token
         from .category.views import category
         from .post.views import post
         from .errors.handlers import errors
@@ -34,6 +35,7 @@ def create_app():
         app.register_blueprint(main)
         app.register_blueprint(metadata, url_prefix = "/metadata")
         app.register_blueprint(auth, url_prefix = "/auth")
+        app.register_blueprint(auth_token, url_prefix = '/auth_token')
         app.register_blueprint(category, url_prefix = "/category")
         app.register_blueprint(post, url_prefix = "/post")
         app.register_blueprint(errors, url_predix="/error")

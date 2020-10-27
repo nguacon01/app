@@ -7,11 +7,6 @@ class Users(UserMixin, db.Model):
     username = db.Column(db.String(20),nullable = True)
     password = db.Column(db.String(200), nullable = False)
     email = db.Column(db.String(100), nullable = False, unique = True)
-    first_name = db.Column(db.String(20), nullable = True, unique = False)
-    last_name = db.Column(db.String(20), nullable = True, unique = False)
-    address = db.Column(db.String(100), nullable = True, unique = False)
-    phone_nb = db.Column(db.String(20), nullable = True, unique = False)
-
 
     def __init__(self, username, password, email, first_name, last_name, address, phone_nb):
         self.username = username
@@ -26,7 +21,7 @@ class Users(UserMixin, db.Model):
         return self.id, self.username
 
     def check_password(self, password):
-        if bcrypt.checkpw(password.encode("utf-8"), self.password):
+        if bcrypt.checkpw(password.encode("utf-8"), self.password.encode("utf-8")):
             return True
         return False
     def set_password(self, password):

@@ -1,0 +1,29 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<form method="POST" action="{{url_for('auth_token.login')}}">
+    <input type="text" name="email" id="email" placeholder="email"/>
+    <input type="text" name="password" id="password" placeholder="password"/>
+    <input type="button" id="submit" name="submit" value="submit">
+    <!-- <a style="border:solid 1px #333;display:inline-block; padding:3px; cursor: pointer;" id="submit" value="submit">submit</a> -->
+</form>
+<script>
+    $(document).ready(function(){
+        $("#submit").on("click", function(){
+            $.ajax({
+                type:"POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    "email": $("input#email").val(),
+                    "password": $("input#password").val(),
+                }),
+                url: "/auth_token/login"
+            })
+            .always(function(res){
+                if(res.status != 200){
+                    console.log(res.status);
+                }else{
+                    console.log(res.token);
+                }
+            })
+        })
+    });
+</script>

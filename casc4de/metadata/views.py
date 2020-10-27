@@ -2,6 +2,8 @@ from flask import Blueprint, flash, render_template, request, redirect, url_for,
 from flask.helpers import make_response
 from flask_login import login_required, current_user
 from numpy.core.fromnumeric import size
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from casc4de.auth_token import helpers
 from werkzeug.utils import secure_filename
 import configparser
 import json
@@ -175,8 +177,10 @@ def create_metadata():
 
 ######################## PROCESSING CONFIGURATION ##############################################
 def user_SeaDrive_path():
+    user = get_jwt_identity()
+    username = user['name']
     
-    user_path = os.path.join('/home',current_user.username)
+    user_path = os.path.join('/home',username)
     if not os.path.exists(user_path):
         os.makedirs(user_path, mode = 0o777)
     # change cwd path
@@ -186,9 +190,10 @@ def user_SeaDrive_path():
     
 
 @metadata.route('/select_project', methods=["POST","GET"])
-@login_required
+@jwt_required
 @decorators.timer
 def select_project():
+    user_identity = get_jwt_identity()
     
     user_SeaDrive = user_SeaDrive_path()
     # check if user has Seafile folder or not
@@ -217,7 +222,7 @@ def select_project():
     return render_template("metadata/select_project.html", data = project_json)
 
 @metadata.route("/config", methods = ["POST", "GET"])
-@login_required
+@jwt_required
 def config():
     """
     author: DMD - casc4de
