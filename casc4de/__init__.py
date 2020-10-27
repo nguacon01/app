@@ -2,7 +2,7 @@ from flask import Flask
 from .config import DevelopmentConfig
 from .tools import decorators
 from flask_assets import Environment
-from .extensions import db, bcrypt, login_manager, jwt, filehandle
+from .extensions import db, bcrypt, login_manager, jwt, migrate
 decorators = decorators
 
 
@@ -21,6 +21,7 @@ def create_app():
         bcrypt.init_app(app)
         login_manager.init_app(app)
         jwt.init_app(app)
+        migrate.init_app(app=app, db=db, directory="db_migration")
 
         #Blueprints imports
         from .main.views import main
@@ -42,7 +43,7 @@ def create_app():
         db.create_all()
 
         # add log handler
-        app.logger.addHandler(filehandle)
+        # app.logger.addHandler(filehandle)
         
         return app
 
