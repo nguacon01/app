@@ -38,7 +38,6 @@ def login():
 
         # email = request.args.get("email", None)
         # password = request.args.get("password", None)
-
         email = post_data.get("email", None)
         password = post_data.get("password", None)
         print(email, password)
@@ -71,6 +70,7 @@ def login():
         return make_response(jsonify({"msg":"Bad password or email", "status":401}))
     # return make_response(jsonify({"msg":"Please fill your email and password", "status":401}))
     return render_template("auth_token/login.html")
+    # return 'welcome'
 
 @auth_token.route('/refresh_token/', methods=['POST','GET'])
 @jwt_refresh_token_required

@@ -36,13 +36,13 @@ import bcrypt
 
 
 class TokenBlackList(db.Model):
-    __tablename__ = "TokenBlackList"
+    __tablename__ = "tokenblacklist"
     id = db.Column(db.Integer, nullable = False, primary_key = True, autoincrement=True)
     jti = db.Column(db.String(36), nullable = False)
     token_type = db.Column(db.String(36), nullable = False)
     user_identity = db.Column(db.String(50), nullable=False)
     revoked = db.Column(db.Boolean, nullable=False)
-    revoked_at = db.Column(db.DateTime, nullable=False)
+    revoked_at = db.Column(db.DateTime, nullable=True)
     expires = db.Column(db.DateTime, nullable=False)
     issue_at = db.Column(db.DateTime, nullable=False)
 
