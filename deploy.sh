@@ -17,12 +17,19 @@
 version="1.00"
 echo "web form 2D Installation - version $version"
 
+# Installer les outils locaux
+fossil clone http://192.168.1.10:8070/EUFT_Spike EUFT_Spike.fossil
+mkdir -p EUFT_Spike
+cd EUFT_Spike
+fossil open ../EUFT_Spike.fossil
+cd ..
+
 # clone project
-git clone https://github.com/nguacon01/app.git
+fossil clone http://dung:dung@192.168.1.10:8070/web_form_2D web_form_2D.fossil
 # create project folder
-# mkdir web_form_2D
-cd app
-# fossil open ../web_form_2D.fossil
+mkdir web_form_2D
+cd web_form_2D
+fossil open ../web_form_2D.fossil
 
 # create virtual environment
 python3 -m venv web_form_2D 
@@ -41,7 +48,7 @@ export FLASK_ENV=production
 export SECRET_KEY=DQCQ8585bJCcnTW085X0WHXD0NcMdU0Cv28MvVo8qo0LKBOK9k9uped32A5FqfMjeST11tkQRbNgfpPP17FF5qyegjL3dfeKODhp
 export MYSQL_USER=mddo
 export MYSQL_PASSWORD=dung123
-export MYSQL_HOST=192.168.1.10
+export MYSQL_HOST=192.168.1.16
 export MYSQL_PORT=2361
 export MYSQL_DATABASE=web_form_2D
 

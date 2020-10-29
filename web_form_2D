@@ -1,7 +1,7 @@
 # nginx setup
 server {
-        listen 80;
-        server_name 192.168.1.10;
+        listen 8877;
+        server_name 192.168.1.16;
 
         location / {
                 include proxy_params;
