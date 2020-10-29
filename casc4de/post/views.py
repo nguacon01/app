@@ -72,3 +72,10 @@ def delete(post_id):
     db.session.commit()
     flash("A post has been deleted!")
     return redirect(url_for("post.post_list"))
+
+
+@post.route("/view/<int:post_id>", methods = ["POST", "GET"])
+def view(post_id):
+    post = Post.query.get_or_404(post_id)
+
+    return render_template("post/view.html", post = post)

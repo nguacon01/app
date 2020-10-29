@@ -1,0 +1,20 @@
+{% extends "main/layout.html" %}
+{% block content %}
+<div class="col-md-12">
+    <h1>{{post.title}}</h1>
+    <p><b>{{post.abstract}}</b></p>
+    <div class="content">
+        {{post.content}}
+    </div>
+    <script>
+        var content = $(".content").text()
+        $(".content").html($.parseHTML(content))
+
+        $('img').each(function(){
+            var src = ($(this).attr('data-src'));
+            $(this).attr('src', src);
+        });
+    </script>
+    
+</div>
+{% endblock %}

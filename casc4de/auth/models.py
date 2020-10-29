@@ -28,7 +28,7 @@ class Users(UserMixin, db.Model):
         return self.id, self.username
 
     def check_password(self, password):
-        if bcrypt.checkpw(password.encode("utf-8"), self.password):
+        if bcrypt.checkpw(password.encode("utf-8"), self.password.encode("utf-8")):
             return True
         return False
     def set_password(self, password):

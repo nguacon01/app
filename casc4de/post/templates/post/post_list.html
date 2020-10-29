@@ -3,6 +3,7 @@
         {% for post in post_list %}
         <li>{{post.title}} | 
             <a href="{{url_for('post.edit', post_id = post.id)}}">edit</a> | 
+            <a href="{{url_for('post.view', post_id = post.id)}}">view</a> |
             <a href="{{url_for('post.delete', post_id = post.id)}}">delete</a> |
             {{post.created_date}}
         </li>

@@ -5,10 +5,10 @@ from flask_login import current_user
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement = True)
-    title = db.Column(db.String(100), nullable = False)
+    title = db.Column(db.String(400), nullable = False)
     posted_date = db.Column(db.DateTime, nullable = False, default = datetime.now())
     modified_date = db.Column(db.DateTime, nullable = False, default = datetime.now())
-    abstract = db.Column(db.String(300), nullable = True)
+    abstract = db.Column(db.String(500), nullable = True)
     content = db.Column(db.Text, nullable = False)
     cate_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)

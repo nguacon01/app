@@ -1,5 +1,8 @@
+{% extends "main/layout.html" %}
+{% block content %}
+<script src="{{url_for('post.static', filename='js/script.js')}}" referrerpolicy="origin"></script>
 
-<div class="col-md-6 login-form-2">
+<div class="col-md-12 login-form-2">
     {% for message in get_flashed_messages() %}
         <div class="alert alert-warning">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -24,7 +27,7 @@
         </div>
         <div class="form-group">
             {{form.abstract.label}}
-            {{form.abstract(placeholder='Abstract', class='form-control')}}
+            {{form.abstract(placeholder='Abstract', class='form-control mytextarea')}}
         </div>
         <div class="form-group">
             {{form.cate_id.label}}
@@ -32,10 +35,11 @@
         </div>
         <div class="form-group">
             {{form.content.label}}
-            {{form.content(class='form-control', placeholder="Content")}}
+            {{form.content(class='form-control mytextarea', placeholder="Content")}}
         </div>
         <div class="form-group">
             {{form.submit(class='btnSubmit')}}
         </div>
     </form>
 </div>
+{% endblock content %}

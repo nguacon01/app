@@ -4,10 +4,10 @@ from flask_login import current_user
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement = True)
-    name = db.Column(db.String(100), nullable = False)
+    name = db.Column(db.String(300), nullable = False)
     created_date = db.Column(db.DateTime(), nullable = False, default = datetime.now())
     modified_date = db.Column(db.DateTime(), nullable = False, default = datetime.now())
-    abstract = db.Column(db.String(300), nullable = True)
+    abstract = db.Column(db.String(500), nullable = True)
     # is_child = db.Column(db.Boolean, nullable = False, default = False)
     parent_id = db.Column(db.Integer, nullable = True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)

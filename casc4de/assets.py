@@ -1,10 +1,10 @@
-from . import create_app as app
+
 from flask_assets import Bundle
 
 def compile_static_assets(assets):
     assets.auto_build = True
     # set debug to False for production
-    assets.debug = False
+    assets.debug = True
     main_css_bundle = Bundle(
         "css/libs/bootstrap.min.css",
         "css/offcanvas-main.css",

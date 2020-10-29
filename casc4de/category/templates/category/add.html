@@ -1,4 +1,7 @@
 
+{% extends "main/layout.html" %}
+{% block content %}
+    
 <div class="col-md-6 login-form-2">
     {% for message in get_flashed_messages() %}
         <div class="alert alert-warning">
@@ -24,7 +27,7 @@
         </div>
         <div class="form-group">
             {{form.abstract.label}}
-            {{form.abstract(placeholder='Abstract', class='form-control')}}
+            {{form.abstract(placeholder='Abstract', class='form-control mytextarea')}}
         </div>
         <div class="form-group">
             {{form.parent_id.label}}
@@ -35,3 +38,4 @@
         </div>
     </form>
 </div>
+{% endblock content %}
