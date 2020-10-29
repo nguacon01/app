@@ -37,15 +37,13 @@ cd casc4de
 ln -s ../../../EUFT_Spike .
 
 # Setup environment variables
-python
-import os
-os.environ["SECRET_KEY"]="DQCQ8585bJCcnTW085X0WHXD0NcMdU0Cv28MvVo8qo0LKBOK9k9uped32A5FqfMjeST11tkQRbNgfpPP17FF5qyegjL3dfeKODhp"
-os.environ["MYSQL_USER"]="mddo"
-os.environ["MYSQL_PASSWORD"]="dung123"
-os.environ["MYSQL_HOST"]="192.168.1.10"
-os.environ["MYSQL_PORT"]="2361"
-os.environ["MYSQL_DATABASE"]="web_form_2D"
-exit()
+export FLASK_ENV=production
+export SECRET_KEY=DQCQ8585bJCcnTW085X0WHXD0NcMdU0Cv28MvVo8qo0LKBOK9k9uped32A5FqfMjeST11tkQRbNgfpPP17FF5qyegjL3dfeKODhp
+export MYSQL_USER=mddo
+export MYSQL_PASSWORD=dung123
+export MYSQL_HOST=192.168.1.10
+export MYSQL_PORT=2361
+export MYSQL_DATABASE=web_form_2D
 
 
 # config Gunicorn and service
