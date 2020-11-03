@@ -16,3 +16,5 @@ app/casc4de/static/.webassets-cache/
 app/log.txt
 casc4de/static/gen/
 casc4de/static/.webassets-cache/
+log.txt
+deploy.sh

@@ -4,9 +4,9 @@ After=network.target
 [Service]
 User=root
 Group=www-data
-WorkingDirectory=/home/root/web_form_2D/app
-Environment="PATH=/home/root/webform_2D/nguacon01/bin"
-ExecStart=/home/root/web_form_2D/nguacon01/bin/gunicorn --config gunicorn_config.py --reload --bind unix:app.sock -m 007 wsgi:app
+WorkingDirectory=/home/test_deploy/web_form_2D/app
+Environment="PATH=/home/test_deploy/webform_2D/nguacon01/bin"
+ExecStart=/home/test_deploy/web_form_2D/nguacon01/bin/gunicorn --config gunicorn_config.py --reload --bind unix:app.sock -m 007 wsgi:app
 Restart=always
 RestartSec=5s
 [Install]
