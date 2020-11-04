@@ -11,11 +11,12 @@ class Config(object):
     #     host = os.environ["MYSQL_HOST"],
     #     db_name = os.environ["MYSQL_DATABASE"]
     # )
-    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{username}:{password}@{host}:2361/{db_name}".format(
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{username}:{password}@{host}:{port}/{db_name}".format(
         username="mddo",
         password="dung123",
-        host="192.168.1.16",
-        db_name="casc4de_test"
+        host="10.18.0.24",
+        db_name="casc4de_test",
+        port="0601"
     )
     SQL_TRACK_MODIFICATIONS = False
     JWT_TOKEN_LOCATION = "cookies"

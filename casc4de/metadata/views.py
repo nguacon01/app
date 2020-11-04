@@ -190,36 +190,38 @@ def user_SeaDrive_path():
     
 
 @metadata.route('/select_project', methods=["POST","GET"])
-@jwt_required
+@login_required
 @decorators.timer
 def select_project():
-    user_identity = get_jwt_identity()
-    
-    user_SeaDrive = user_SeaDrive_path()
-    # check if user has Seafile folder or not
-    if not os.path.isdir(user_SeaDrive):
+    # user_identity = get_jwt_identity()
+    try:
+        user_SeaDrive = user_SeaDrive_path()
+        # check if user has Seafile folder or not
+        if not os.path.isdir(user_SeaDrive):
+            return render_template("errors/404.html", message="You don't have Seafile folder or Seafile folder not found")
+
+        obj_ser_paths = FI_tools.build_list(base=user_SeaDrive, accept=('ser'))
+        # check if in Seafile folder has ser files or not
+        if not obj_ser_paths:
+            return render_template("errors/404.html", message="You don't have any ser file")
+        project_json = {}
+        for obj in obj_ser_paths:
+            if isinstance(obj, tuple):
+                fullpath = str(obj.fullpath)
+                shortpath = str(obj.spath)
+                
+                _, projet_folder_name = os.path.split(fullpath)
+                files = os.scandir(fullpath)
+                conf_list = {}
+                for conf_file in files:
+                    if os.path.isfile(conf_file.path) and conf_file.path.endswith(".mscf"):
+                        conf_list[conf_file.name] = conf_file.path
+                
+                project_json[projet_folder_name] = {"name":projet_folder_name, "shortpath":shortpath, "mscfpaths":conf_list}
+
+        return render_template("metadata/select_project.html", data = project_json)
+    except:
         return render_template("errors/404.html", message="You don't have Seafile folder or Seafile folder not found")
-
-    obj_ser_paths = FI_tools.build_list(base=user_SeaDrive, accept=('ser'))
-    # check if in Seafile folder has ser files or not
-    if not obj_ser_paths:
-        return render_template("errors/404.html", message="You don't have any ser file")
-    project_json = {}
-    for obj in obj_ser_paths:
-        if isinstance(obj, tuple):
-            fullpath = str(obj.fullpath)
-            shortpath = str(obj.spath)
-            
-            _, projet_folder_name = os.path.split(fullpath)
-            files = os.scandir(fullpath)
-            conf_list = {}
-            for conf_file in files:
-                if os.path.isfile(conf_file.path) and conf_file.path.endswith(".mscf"):
-                    conf_list[conf_file.name] = conf_file.path
-            
-            project_json[projet_folder_name] = {"name":projet_folder_name, "shortpath":shortpath, "mscfpaths":conf_list}
-
-    return render_template("metadata/select_project.html", data = project_json)
 
 @metadata.route("/config", methods = ["POST", "GET"])
 @jwt_required
